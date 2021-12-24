@@ -28,8 +28,8 @@ public abstract class ExcelResultHandler implements ResultHandler {
     protected SXSSFSheet sxssfSheet;
 
     // row = xls:65,535 xlsx:1,048,576
-//    protected final int MAX_SHEET_ROW = 1000000;
     protected final int MAX_SHEET_ROW = 1000000;
+
     private int rowAccessWindowSize;
     protected int sheetRowCnt = 1;
 
