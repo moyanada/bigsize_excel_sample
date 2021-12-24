@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- cash 이용안함 실시간 데이터가 필요할 경우 sqlSession에서 clearCache() or Mapper에서 flushCache:false and useCashe:true 까지 설정-->
+		<setting name="cacheEnabled" value="false" />
+		<setting name="localCacheScope" value="STATEMENT" />
+		<!-- insert, update 키 받기 -->
+		<setting name="useGeneratedKeys" value="true" />
+		<!-- SIMPLE:default, REUSE:preparestatement 재사용, BATCH:batch실행자는 구문재사용 수정을 배치처리 -->
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 쿼리에 보낼 때 null 값일때 처리 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<!-- 쿼리 결과 필드에 null이여도 키생성 오류 발생 방지 -->
+		<setting name="callSettersOnNulls" value="true"/>
+		<!-- 지연 로딩 default true-->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+	
+	<typeAliases>
+	</typeAliases>
+
+</configuration>

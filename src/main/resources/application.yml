@@ -1,0 +1,20 @@
+spring:
+  main:
+    banner-mode: off
+  datasource:
+    localdb:
+      jdbc-url: jdbc:mariadb://localhost:3306/localdb?autoReconnect=true
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: org.mariadb.jdbc.Driver
+      username: root
+      password: xptmxm123
+      hikari:
+        maximum-pool-size: 5
+        connection-timeout: 15000
+        validation-timeout: 10000
+        max-lifetime: 0
+        connection-test-query: select 1 from dual
+
+excel:
+  file-dir-path: /tmp
+  tmp-dir-path: /tmp

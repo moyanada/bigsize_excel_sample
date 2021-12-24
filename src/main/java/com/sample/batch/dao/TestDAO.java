@@ -1,0 +1,10 @@
+package com.sample.batch.dao;
+
+import com.sample.common.excel.TestExcelHandler;
+
+import java.util.HashMap;
+
+public interface TestDAO {
+    public boolean createExcelByTmpTable(TestExcelHandler testExcelHandler);
+    public int insertTmpTable(HashMap<String, Object> pHm);
+}
