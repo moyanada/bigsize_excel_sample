@@ -154,8 +154,6 @@ public abstract class ExcelResultHandler implements ResultHandler {
 
     /**
      * rowCnt는 1부터 시작함
-     * @param rowCnt
-     * @param dbData
      */
     public abstract void createExcelBody(int rowCnt, HashMap<String, Object> dbData);
 

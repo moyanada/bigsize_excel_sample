@@ -51,7 +51,7 @@ public class BatchFileManager {
             aDirName[2] = DateUtil.getFormattedString("MM");
         }
         for(String dirName : aDirName) {
-            setFileFullPath(getFileFullPath().toString()+"/"+dirName);
+            setFileFullPath(getFileFullPath()+"/"+dirName);
             mkDir(dirName);
         }
     }
