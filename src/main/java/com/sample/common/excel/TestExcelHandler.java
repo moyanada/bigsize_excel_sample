@@ -1,6 +1,7 @@
 package com.sample.common.excel;
 
 import com.sample.batch.dto.ExcelFileInfo;
+import com.sample.common.constants.FlushControl;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -8,8 +9,8 @@ import java.util.HashMap;
 @Slf4j
 public class TestExcelHandler extends ExcelResultHandler {
 
-    public TestExcelHandler(ExcelFileInfo excelFileInfo, int rowAccessWindowSize) {
-        super(excelFileInfo, rowAccessWindowSize);
+    public TestExcelHandler(ExcelFileInfo excelFileInfo, FlushControl flushControl) {
+        super(excelFileInfo, flushControl);
     }
 
     @Override

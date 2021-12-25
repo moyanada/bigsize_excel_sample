@@ -2,11 +2,15 @@
 <!DOCTYPE mapper	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sample.batch.dao.TestDAO">
 
-    <select id="selectTmpTable001" resultType="java.util.LinkedHashMap">
+    <select id="selectTmpTable001" parameterType="TmpTableSchCmd" resultType="java.util.LinkedHashMap">
         SELECT
                TMP_SEQ, COL1, COL2, COL3, COL4, COL5
         FROM TMP_TABLE_001
-        LIMIT 0, 10000
+        <choose>
+            <when test='isLimit != null and isLimit'>
+                LIMIT 0, 1000
+            </when>
+        </choose>
     </select>
 
     <insert id="insertTmpTable001">

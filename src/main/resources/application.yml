@@ -18,3 +18,8 @@ spring:
 excel:
   file-dir-path: /tmp
   tmp-dir-path: /tmp
+
+logging:
+  level:
+    root: info
+    com.sample: debug

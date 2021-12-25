@@ -9,4 +9,5 @@
 - IntelliJ
 
 ### 기타정보
-- 아직 없음
+- [주년탐구생활 BLOG 참고](https://explored.tistory.com/20) 
+- MyBatis의 ResultHandler를 통해 POI SXSSF로 대용량 엑셀파일 만들기

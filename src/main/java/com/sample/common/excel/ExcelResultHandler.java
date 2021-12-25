@@ -1,6 +1,7 @@
 package com.sample.common.excel;
 
 import com.sample.batch.dto.ExcelFileInfo;
+import com.sample.common.constants.FlushControl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
@@ -30,7 +31,7 @@ public abstract class ExcelResultHandler implements ResultHandler {
     // row = xls:65,535 xlsx:1,048,576
     protected final int MAX_SHEET_ROW = 1000000;
 
-    private int rowAccessWindowSize;
+    private FlushControl flushControl;
     protected int sheetRowCnt = 1;
 
     protected ExcelFileInfo excelFileInfo;
@@ -39,11 +40,11 @@ public abstract class ExcelResultHandler implements ResultHandler {
         return isSuccess;
     }
 
-    public ExcelResultHandler(ExcelFileInfo excelFileInfo, int rowAccessWindowSize) {
+    public ExcelResultHandler(ExcelFileInfo excelFileInfo, FlushControl flushControl) {
         this.excelFileInfo = excelFileInfo;
-        this.rowAccessWindowSize = rowAccessWindowSize;
+        this.flushControl = flushControl;
         // 0. 워크북 생성
-        this.sxssfWorkbook = new SXSSFWorkbook(rowAccessWindowSize); // rowAccessWindowSize개의 로우만 메모리 보유, 나머지 디스크로 내보낸다.
+        this.sxssfWorkbook = new SXSSFWorkbook(flushControl.getRowAccessWindowSize()); // rowAccessWindowSize개의 로우만 메모리 보유, 나머지 디스크로 내보낸다.
         sxssfWorkbook.setCompressTempFiles(true);                    // 임시파일 압축여부
     }
 
@@ -123,11 +124,14 @@ public abstract class ExcelResultHandler implements ResultHandler {
         }
     }
 
+    /**
+     *  rowAccessWindowSize -1이면 수동 flush작동
+     */
     protected void flushMem(int rowCnt) {
-        if(rowCnt % rowAccessWindowSize == 1) {
-            log.info("[Excel] flushMem {}, {}", rowCnt, rowAccessWindowSize);
+        if(flushControl.getRowAccessWindowSize() == -1 && rowCnt % flushControl.getManualFlushSize() == 1) {
             try {
-                ((SXSSFSheet)sxssfSheet).flushRows(rowAccessWindowSize);
+                ((SXSSFSheet)sxssfSheet).flushRows(flushControl.getManualFlushSize());
+                log.info("[Excel] flushMem {}", rowCnt);
             } catch (IOException e) {
                 e.printStackTrace();
             }
