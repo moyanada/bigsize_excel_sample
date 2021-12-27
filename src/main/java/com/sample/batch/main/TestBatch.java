@@ -43,7 +43,7 @@ public class TestBatch {
         tmpTableSchCmd.setLimit(true);
 
         TestExcelHandler testExcelHandler = new TestExcelHandler(excelFileInfo, flushControl);
-        testDAOImpl.createExcelByTmpTable(tmpTableSchCmd, testExcelHandler);
+        testDAOImpl.createExcelByTmpTableMap(tmpTableSchCmd, testExcelHandler);
 
         stopwatch.stop();
         log.info("수행시간 : {}", stopwatch.getTotalTimeSeconds());

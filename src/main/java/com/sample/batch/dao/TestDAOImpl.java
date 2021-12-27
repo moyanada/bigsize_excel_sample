@@ -15,8 +15,8 @@ public class TestDAOImpl implements TestDAO {
     private final SqlSessionTemplate sqlSessionTemplate;
 
     @Override
-    public boolean createExcelByTmpTable(TmpTableSchCmd tmpTableSchCmd, TestExcelHandler testExcelHandler) {
-        sqlSessionTemplate.select("com.sample.batch.dao.TestDAO.selectTmpTable001", tmpTableSchCmd, testExcelHandler);
+    public boolean createExcelByTmpTableMap(TmpTableSchCmd tmpTableSchCmd, TestExcelHandler testExcelHandler) {
+        sqlSessionTemplate.select("com.sample.batch.dao.TestDAO.selectMapOfTmpTable", tmpTableSchCmd, testExcelHandler);
         testExcelHandler.createExcelByTmpFile();
         return testExcelHandler.isSuccess();
     }

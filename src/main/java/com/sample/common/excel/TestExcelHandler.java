@@ -14,16 +14,16 @@ public class TestExcelHandler extends ExcelResultHandler {
     }
 
     @Override
-    public void createExcelBody(int rowCnt, HashMap<String, Object> dbData) {
+    public void createExcelBody(int rowCnt, Object dbData) {
         //워크북생성 -> 시트생성 -> 쉘 타이틀생성
         if(rowCnt % MAX_SHEET_ROW == 1) {
             createSXSSFSheet((rowCnt/MAX_SHEET_ROW)+1);
-            createCellTitle(dbData);
+            createCellTitle((HashMap<String, Object>)dbData);
             //새로운 시트의 ROW는 1부터 시작
             sheetRowCnt = 1;
         }
         //ROW 생성
-        createDataCell(dbData);
+        createDataCell((HashMap<String, Object>)dbData);
 
         //...중간중간에 flush
         flushMem(rowCnt);

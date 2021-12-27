@@ -159,11 +159,11 @@ public abstract class ExcelResultHandler implements ResultHandler {
     /**
      * rowCnt는 1부터 시작함
      */
-    public abstract void createExcelBody(int rowCnt, HashMap<String, Object> dbData);
+    public abstract void createExcelBody(int rowCnt, Object dbData);
 
     @Override
     public void handleResult(ResultContext resultContext) {
-        createExcelBody(resultContext.getResultCount(), (HashMap<String, Object>) resultContext.getResultObject());
+        createExcelBody(resultContext.getResultCount(), resultContext.getResultObject());
     }
 
 }
