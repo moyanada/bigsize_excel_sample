@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,7 +59,7 @@ public abstract class ExcelResultHandler implements ResultHandler {
     /**
      * 2. 타이틀 셀 생성
      */
-    protected void createCellTitle(HashMap<String, Object> dbData) {
+    protected void createCellTitle(Map<String, Object> dbData) {
         CellStyle titleStyle = createCellStyleOfTitle(sxssfWorkbook);
         StringBuffer header = new StringBuffer();
         Set<String> keys = dbData.keySet();
@@ -94,7 +93,7 @@ public abstract class ExcelResultHandler implements ResultHandler {
     /**
      * 3. 데이터 셀 생성
      */
-    protected void createDataCell(HashMap<String, Object> dbData) {
+    protected void createDataCell(Map<String, Object> dbData) {
         Row dataRow = sxssfSheet.createRow(sheetRowCnt);
         int cellCnt = 0;
         for (Map.Entry<String, Object> entry : dbData.entrySet()) {
