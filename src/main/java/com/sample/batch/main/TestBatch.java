@@ -2,6 +2,7 @@ package com.sample.batch.main;
 
 import com.sample.batch.dao.TestDAOImpl;
 import com.sample.batch.dto.ExcelFileInfo;
+import com.sample.batch.dto.TmpTableDto;
 import com.sample.batch.dto.TmpTableSchCmd;
 import com.sample.common.constants.FlushControl;
 import com.sample.common.excel.TestExcelHandler;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
+import java.util.List;
 
 @Slf4j
 @Component
@@ -47,6 +50,45 @@ public class TestBatch {
 
         stopwatch.stop();
         log.info("수행시간 : {}", stopwatch.getTotalTimeSeconds());
+
+    }
+
+    public void doProcessOOM() {
+        StopWatch stopwatch = new StopWatch("TestBatch");
+        stopwatch.start();
+
+        TmpTableSchCmd tmpTableSchCmd = new TmpTableSchCmd();
+        tmpTableSchCmd.setLimit(true);
+
+        List<TmpTableDto> tmpTableDtos = testDAOImpl.selectTmpTable(tmpTableSchCmd);
+
+        stopwatch.stop();
+        log.info("수행시간 : {}", stopwatch.getTotalTimeSeconds());
+
+    }
+
+    public void doSaveData() {
+
+        TmpTableDto tmpTableDto = TmpTableDto.builder()
+                .col1("데이터를좀넣어야함")
+                .col2("데이터를좀넣어야함")
+                .col3("데이터를좀넣어야함")
+                .col4("데이터를좀넣어야함")
+                .col5("데이터를좀넣어야함")
+                .col6("데이터를좀넣어야함")
+                .col7("데이터를좀넣어야함")
+                .col8("데이터를좀넣어야함")
+                .col9("데이터를좀넣어야함")
+                .col10("데이터를좀넣어야함")
+                .col11("데이터를좀넣어야함")
+                .col12("데이터를좀넣어야함")
+                .col13("데이터를좀넣어야함")
+                .col14("데이터를좀넣어야함")
+                .col15("데이터를좀넣어야함").build();
+        for(int i = 0; i < 2000000; i++) {
+            testDAOImpl.insertTmpTable(tmpTableDto);
+        }
+
 
     }
 

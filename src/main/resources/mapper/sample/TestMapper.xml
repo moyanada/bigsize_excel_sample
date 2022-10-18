@@ -13,7 +13,13 @@
         </choose>
     </select>
 
-    <insert id="insertTmpTable001">
+    <select id="selectTmpTableDtoOfTmpTable" parameterType="TmpTableSchCmd" resultType="TmpTableDto">
+        SELECT
+        TMP_SEQ, COL1, COL2, COL3, COL4, COL5, COL6, COL7, COL8, COL9, COL10, COL11, COL12, COL13, COL14, COL15
+        FROM TMP_TABLE_001
+    </select>
+
+    <insert id="insertTmpTable001" parameterType="TmpTableDto">
         INSERT INTO TMP_TABLE_001
             (
              COL1
@@ -21,6 +27,16 @@
              , COL3
              , COL4
              , COL5
+             , COL6
+             , COL7
+             , COL8
+             , COL9
+             , COL10
+             , COL11
+             , COL12
+             , COL13
+             , COL14
+             , COL15
              )
         VALUE
             (
@@ -29,6 +45,16 @@
             ,#{col3, jdbcType=VARCHAR}
             ,#{col4, jdbcType=VARCHAR}
             ,#{col5, jdbcType=VARCHAR}
+            ,#{col6, jdbcType=VARCHAR}
+            ,#{col7, jdbcType=VARCHAR}
+            ,#{col8, jdbcType=VARCHAR}
+            ,#{col9, jdbcType=VARCHAR}
+            ,#{col10, jdbcType=VARCHAR}
+            ,#{col11, jdbcType=VARCHAR}
+            ,#{col12, jdbcType=VARCHAR}
+            ,#{col13, jdbcType=VARCHAR}
+            ,#{col14, jdbcType=VARCHAR}
+            ,#{col15, jdbcType=VARCHAR}
             )
     </insert>
 	
