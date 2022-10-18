@@ -23,7 +23,7 @@ public class BigsizeExcelSampleApplication {
     @Bean
     public ApplicationRunner applicationRunner() {
         return args -> {
-            testBatch.doProcessOOM();
+            testBatch.doProcessOOM_for();
 //            testBatch.doProcess();
 //            testBatch.doSaveData();
             System.exit(0);

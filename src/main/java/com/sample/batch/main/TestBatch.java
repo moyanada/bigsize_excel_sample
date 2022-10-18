@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -53,7 +54,7 @@ public class TestBatch {
 
     }
 
-    public void doProcessOOM() {
+    public void doProcessOOM_DB() {
         StopWatch stopwatch = new StopWatch("TestBatch");
         stopwatch.start();
 
@@ -67,9 +68,31 @@ public class TestBatch {
 
     }
 
+    public void doProcessOOM_for() {
+        StopWatch stopwatch = new StopWatch("TestBatch");
+        stopwatch.start();
+
+        List<TmpTableDto> tmpTableDtos = new ArrayList<>();
+        System.out.println("testStart");
+        for(int i = 0; i < 1000000000; i++) {
+            tmpTableDtos.add(getTmpTableDtoData());
+        }
+
+        stopwatch.stop();
+        log.info("수행시간 : {}", stopwatch.getTotalTimeSeconds());
+
+    }
+
     public void doSaveData() {
 
-        TmpTableDto tmpTableDto = TmpTableDto.builder()
+        TmpTableDto tmpTableDto = getTmpTableDtoData();
+        for(int i = 0; i < 2000000; i++) {
+            testDAOImpl.insertTmpTable(tmpTableDto);
+        }
+    }
+
+    public TmpTableDto getTmpTableDtoData() {
+        return TmpTableDto.builder()
                 .col1("데이터를좀넣어야함")
                 .col2("데이터를좀넣어야함")
                 .col3("데이터를좀넣어야함")
@@ -85,11 +108,6 @@ public class TestBatch {
                 .col13("데이터를좀넣어야함")
                 .col14("데이터를좀넣어야함")
                 .col15("데이터를좀넣어야함").build();
-        for(int i = 0; i < 2000000; i++) {
-            testDAOImpl.insertTmpTable(tmpTableDto);
-        }
-
-
     }
 
 }

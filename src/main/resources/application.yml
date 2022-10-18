@@ -6,7 +6,7 @@ spring:
       jdbc-url: jdbc:mariadb://localhost:3306/local_db?autoReconnect=true
       type: com.zaxxer.hikari.HikariDataSource
       driver-class-name: org.mariadb.jdbc.Driver
-      username: root
+      username: TESTUSER
       password: xptmxm123
       hikari:
         maximum-pool-size: 20
