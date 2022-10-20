@@ -21,4 +21,7 @@ excel:
 
 logging:
   level:
-    com.sample: debug
+    com.sample: info
+
+aaa:
+  ddd: ddd
