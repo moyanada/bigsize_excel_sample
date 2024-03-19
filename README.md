@@ -1,7 +1,7 @@
 ## **BIGSIZE_EXCEL_SAMPLE** ##
 
 ## 설명
-- Gradle Multi Module 구성
+- 대용량 엑셀파일 다운로드 메모리릭 발생시 MyBatis ResultHandler 이용하여 해결하기
 ### 개발환경
 - SpringBoot 2.6.2
 - Java 1.8
